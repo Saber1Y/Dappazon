@@ -1,0 +1,2 @@
+smoke Test - Name pass
+getting owner's Address for Signing into the Web App

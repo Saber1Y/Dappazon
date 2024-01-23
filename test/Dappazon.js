@@ -1,6 +1,6 @@
 const { expect } = require("chai");
-// const { describe } = require("node:test");
-// const { beforeEach } = require("node:test");
+
+
 
 
 const tokens = (n) => {
@@ -22,6 +22,14 @@ describe("Dappazon", () => {
       expect(name).to.equal("Dappazon");
     });
   })
-
-
 });
+
+
+
+it("Dappazon", async () => {
+  const Dappazon = await ethers.getContractFatory('Dappazon');
+  const dappazon = await Dappazon.deploy();
+
+  expect(dappazon.name()).to.equal("Dappazon");
+
+})
