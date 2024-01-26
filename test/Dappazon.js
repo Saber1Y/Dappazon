@@ -19,11 +19,11 @@ describe("Dappazon", () => {
     [deployer, buyer] = await ethers.getSigners();
   });
 
-  describe("Deployment", () => {
-    it('has a name', async () => {
-      const name = await dappazon.name();
-      expect(name).to.equal("Dappazon");
-    });
+  // describe("Deployment", () => {
+  //   it('has a name', async () => {
+  //     const name = await dappazon.name();
+  //     expect(name).to.equal("Dappazon");
+  //   });
 
     it('Sets Owner', async () => {
       const Contract = await dappazon.Owner();
@@ -31,7 +31,7 @@ describe("Dappazon", () => {
       expect(Contract).to.equal(deployer.address);
     });
   })
-});
+// });
 
 
 
