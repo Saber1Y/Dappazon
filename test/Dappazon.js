@@ -1,12 +1,11 @@
 const { expect } = require("chai");
-const { describe, beforeEach, it } = require("node:test");
+// const { beforeEach } = require("node:test");
 
 const tokens = (n) => {
-  return ethers.utils.parseUnits(n.toString(), 'ether')
+  return ethers.utils.parseUnits(n.toString(), 'ether');
 }
 
 describe("Dappazon", () => {
-
   let dappazon;
   let buyer, deployer;
 
@@ -18,7 +17,7 @@ describe("Dappazon", () => {
   });
 
   it('Sets Owner', async () => {
-    const Contract = await dappazon.Owner();
+    const Contract = await dappazon.owner();
     expect(Contract).to.equal(deployer.address);
   });
 
@@ -26,6 +25,7 @@ describe("Dappazon", () => {
     let transaction;
 
     beforeEach(async () => {
+
       transaction = await dappazon.connect(deployer).list(
         1,
         "Shoes",
@@ -39,9 +39,10 @@ describe("Dappazon", () => {
       await transaction.wait();
     });
 
-    it('Returns List', async () => {
+    it('Returns Items attributes', async () => {
       const item = await dappazon.items(1);
       expect(item.id).to.equal(1);
     });
+
   });
 });
