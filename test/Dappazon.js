@@ -1,6 +1,4 @@
 const { expect } = require("chai");
-const { describe } = require("node:test");
-// const { beforeEach } = require("node:test");
 
 const tokens = (n) => {
   return ethers.utils.parseUnits(n.toString(), 'ether');
@@ -8,19 +6,15 @@ const tokens = (n) => {
 
 describe("Dappazon", () => {
   let dappazon;
-  let buyer, deployer;
+  let deployer;
 
   beforeEach(async () => {
     const Dappazon = await ethers.getContractFactory("Dappazon")
     dappazon = await Dappazon.deploy();
 
-    [deployer, buyer] = await ethers.getSigners();
+    [deployer] = await ethers.getSigners();
   });
 
-  // it('Sets Owner', async () => {
-  //   const Contract = await dappazon.owner();
-  //   expect(Contract).to.equal(deployer.address);
-  // });
   describe("Deployment", () => {
     it('Sets Deployment', async () => {
       expect(await dappazon.owner()).to.equal(deployer.address);
@@ -28,7 +22,7 @@ describe("Dappazon", () => {
   })
 
   describe("Listing", () => {
-    let transaction
+    let transaction;
 
     const ID = 1
     const NAME = "Shoes"
@@ -38,19 +32,14 @@ describe("Dappazon", () => {
     const RATING = 4
     const STOCK = 5
 
-
     beforeEach(async () => {
-      transaction = await dappazon.connect(deployer).list(1, 'Shoes', "IMAGE", 1, 4, 5)
-
+      transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
       await transaction.wait();
     });
 
     it('Returns Item Attribute', async () => {
-      const item = await dappazon.items(1);
-      expect(item.id).to.equal(1);
+      const item = await dappazon.items(ID);
+      expect(item.id).to.equal(ID);
     })
-
   })
-
-
 });
