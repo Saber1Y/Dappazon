@@ -16,6 +16,11 @@ contract Dappazon {
 
     event listPro(string name, uint256 cost, uint256 quantity);
 
+    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
+
     mapping(uint256 => Item) public items;
 
     function ListProduct(
@@ -26,7 +31,8 @@ contract Dappazon {
         uint256 _cost,
         uint256 _rating,
         uint256 _stock
-    ) public {
+    ) public onlyOwner {
+
         Item memory item = Item(
             _id,
             _name,
