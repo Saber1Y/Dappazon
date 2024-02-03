@@ -1,6 +1,6 @@
 smoke Test - Name pass
 getting owner's Address for Signing into the Web App
 
-list prod
+list prod  - FUNCTION FOR IPFS
 buy prod
 withdraw prod

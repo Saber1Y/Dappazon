@@ -8,11 +8,13 @@ contract Dappazon {
         uint256 id;
         string name;
         string image;
-        string catalogue;
-        uint256 cart;
+        string category;
+        uint256 cost;
         uint256 rating;
         uint256 stock;
     }
+
+    event listPro(string name, uint256 cost, uint256 quantity);
 
     mapping(uint256 => Item) public items;
 
@@ -20,8 +22,8 @@ contract Dappazon {
         uint256 _id,
         string memory _name,
         string memory _image,
-        string memory _catalogue,
-        uint256 _cart,
+        string memory _cate,
+        uint256 _cost,
         uint256 _rating,
         uint256 _stock
     ) public {
@@ -29,12 +31,14 @@ contract Dappazon {
             _id,
             _name,
             _image,
-            _catalogue,
-            _cart,
+            _cate,
+            _cost,
             _rating,
             _stock
         );
 
         items[_id] = item;
+
+        emit listPro(_name, _cost, _stock);
     }
 }
