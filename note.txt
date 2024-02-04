@@ -1,9 +1,8 @@
 smoke Test - Name pass
 getting owner's Address for Signing into the Web App
 
-list prod  - FUNCTION FOR IPFS
-
+list prod  - FUNCTION FOR IPFS - 
 make listing ability for users,
 
-buy prod
+buy prod - Recieve cryp, create an order, subsrtact , emit 
 withdraw prod

@@ -14,7 +14,7 @@ const STOCK = 5
 
 describe("Dappazon", () => {
   let dappazon;
-  let deployer;
+  let deployer, buyer;
 
   beforeEach(async () => {
     const Dappazon = await ethers.getContractFactory("Dappazon")
@@ -35,6 +35,7 @@ describe("Dappazon", () => {
     beforeEach(async () => {
       transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
       await transaction.wait();
+
     });
 
     it('Returns Item Attribute', async () => {
@@ -48,6 +49,23 @@ describe("Dappazon", () => {
       expect(item.rating).to.equal(RATING);
       expect(item.stock).to.equal(STOCK);
     })
+
+    it('Returns List emit', async () => {
+      expect(transaction).to.emit(dappazon, "List");
+    })
+  })
+
+  describe("Listing", () => {
+    let transaction;
+
+    beforeEach(async () => {
+      transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
+      await transaction.wait();
+
+      transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST})
+    });
+
+
 
     it('Returns List emit', async () => {
       expect(transaction).to.emit(dappazon, "List");
