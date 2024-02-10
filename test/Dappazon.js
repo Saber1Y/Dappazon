@@ -67,9 +67,11 @@ describe("Dappazon", () => {
 
 
 
-    it('Returns List emit', async () => {
-      expect(transaction).to.emit(dappazon, "List");
+    it('Updates Balance', async () => {
+      const result = await ethers.provider.getBalace(dappazon.address);
+      expect(result).to.equal(COST);
     })
+
   })
 
 });

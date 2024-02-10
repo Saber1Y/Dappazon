@@ -48,7 +48,7 @@ contract Dappazon {
         emit listPro(_name, _cost, _stock);
     }
 
-    function BuyProduct() public payable {
+    function BuyProduct(uint256 _id) public payable {
 
     }
 }
