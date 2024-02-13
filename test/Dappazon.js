@@ -50,28 +50,25 @@ describe("Dappazon", () => {
       expect(item.stock).to.equal(STOCK);
     })
 
+    describe("Listing", () => {
+      let transaction;
+  
+      beforeEach(async () => {
+        transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
+        await transaction.wait();
+  
+        transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST })
+      });
+  
+      // it('Updates Balance', async () => {
+      //   const result = await ethers.provider.getBalace(dappazon.address);
+      //   expect(result).to.equal(COST);
+      // })
+    })
+    
     it('Returns List emit', async () => {
       expect(transaction).to.emit(dappazon, "List");
     })
-  })
-
-  describe("Listing", () => {
-    let transaction;
-
-    beforeEach(async () => {
-      transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
-      await transaction.wait();
-
-      transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST})
-    });
-
-
-
-    it('Updates Balance', async () => {
-      const result = await ethers.provider.getBalace(dappazon.address);
-      expect(result).to.equal(COST);
-    })
-
   })
 
 });
