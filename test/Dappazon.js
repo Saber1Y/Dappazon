@@ -17,10 +17,10 @@ describe("Dappazon", () => {
   let deployer, buyer
 
   beforeEach(async () => {
-    
+
     [deployer, buyer] = await ethers.getSigners()
 
-   
+
     const Dappazon = await ethers.getContractFactory("Dappazon")
     dappazon = await Dappazon.deploy()
   })
@@ -59,7 +59,7 @@ describe("Dappazon", () => {
   })
 
 
-  describe("Listing", () => {
+  describe("Buying", () => {
     let transaction;
 
     beforeEach(async () => {
@@ -69,18 +69,28 @@ describe("Dappazon", () => {
       transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST })
     });
 
+
     it("Updates the contract Balance", async () => {
       const result = await ethers.provider.getBalance(dappazon.address);
       // console.log(result)
       expect(result).to.equal(COST);
     })
 
+    it("Adds the order", async () => {
+      const order = await dappazon.orders(buyer.address, 1)
+
+      expect(order.time).to.be.greaterThan(0)
+      expect(order.item.name).to.equal(NAME)
+    })
+
+
     it('updates buyer"s order count', async () => {
       const result = await dappazon.orderCount(buyer.address)
       expect(result).to.equal(1);
     })
 
-  })
-
-
+    it("Emit Buy Event", async () => {
+      expect(transaction).to.emit(dappazon, "Buy")
+    })
+  });
 });

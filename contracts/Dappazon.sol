@@ -23,9 +23,10 @@ contract Dappazon {
     mapping(address => uint256) public orderCount;
     mapping(address => mapping(uint256 => Order)) public orders;
 
+    event Buy(address buyer, uint256 orderId, uint256 itemId);
     event listPro(string name, uint256 cost, uint256 quantity);
 
-    modifier onlyOwner {
+    modifier onlyOwner() {
         require(msg.sender == owner);
         _;
     }
@@ -39,7 +40,6 @@ contract Dappazon {
         uint256 _rating,
         uint256 _stock
     ) public onlyOwner {
-
         Item memory item = Item(
             _id,
             _name,
@@ -64,5 +64,7 @@ contract Dappazon {
         orders[msg.sender][orderCount[msg.sender]] = order;
 
         items[_id].stock = item.stock - 1;
+
+        emit Buy(msg.sender, orderCount[msg.sender], item.id);
     }
 }
