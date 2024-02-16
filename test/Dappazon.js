@@ -13,21 +13,24 @@ const RATING = 4
 const STOCK = 5
 
 describe("Dappazon", () => {
-  let dappazon;
-  let deployer, buyer;
+  let dappazon
+  let deployer, buyer
 
   beforeEach(async () => {
-    const Dappazon = await ethers.getContractFactory("Dappazon")
-    dappazon = await Dappazon.deploy();
+    
+    [deployer, buyer] = await ethers.getSigners()
 
-    [deployer] = await ethers.getSigners();
-  });
+   
+    const Dappazon = await ethers.getContractFactory("Dappazon")
+    dappazon = await Dappazon.deploy()
+  })
 
   describe("Deployment", () => {
-    it('Sets Deployment', async () => {
-      expect(await dappazon.owner()).to.equal(deployer.address);
+    it("Sets the owner", async () => {
+      expect(await dappazon.owner()).to.equal(deployer.address)
     })
   })
+
 
   describe("Listing", () => {
     let transaction;
@@ -50,25 +53,29 @@ describe("Dappazon", () => {
       expect(item.stock).to.equal(STOCK);
     })
 
-    describe("Listing", () => {
-      let transaction;
-  
-      beforeEach(async () => {
-        transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
-        await transaction.wait();
-  
-        transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST })
-      });
-  
-      // it('Updates Balance', async () => {
-      //   const result = await ethers.provider.getBalace(dappazon.address);
-      //   expect(result).to.equal(COST);
-      // })
-    })
-    
     it('Returns List emit', async () => {
       expect(transaction).to.emit(dappazon, "List");
     })
   })
+
+
+  describe("Listing", () => {
+    let transaction;
+
+    beforeEach(async () => {
+      transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
+      await transaction.wait();
+
+      transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST })
+    });
+
+    it("Updates the contract Balance", async () => {
+      const result = await ethers.provider.getBalance(dappazon.address);
+      // console.log(result)
+      expect(result).to.equal(COST);
+    })
+
+  })
+
 
 });
