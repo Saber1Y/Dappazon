@@ -4,5 +4,5 @@ getting owner's Address for Signing into the Web App
 list prod  - FUNCTION FOR IPFS - 
 make listing ability for users,
 
-buy prod - Recieve cryp, create an order, subsrtact , emit 
+buy prod - Recieve cryp(checked), create an order -lisst order, subsrtact , emit 
 withdraw prod

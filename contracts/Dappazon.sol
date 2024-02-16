@@ -14,14 +14,21 @@ contract Dappazon {
         uint256 stock;
     }
 
+    struct Order {
+        uint256 time;
+        Item item;
+    }
+
+    mapping(uint256 => Item) public items;
+    mapping(address => uint256) public orderCount;
+    mapping(address => mapping(uint256 => Order)) public orders;
+
     event listPro(string name, uint256 cost, uint256 quantity);
 
     modifier onlyOwner {
         require(msg.sender == owner);
         _;
     }
-
-    mapping(uint256 => Item) public items;
 
     function ListProduct(
         uint256 _id,
@@ -49,6 +56,13 @@ contract Dappazon {
     }
 
     function BuyProduct(uint256 _id) public payable {
+        Item memory item = items[_id];
 
+        Order memory order = Order(block.timestamp, item);
+
+        orderCount[msg.sender]++;
+        orders[msg.sender][orderCount[msg.sender]] = order;
+
+        items[_id].stock = item.stock - 1;
     }
 }

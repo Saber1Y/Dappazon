@@ -75,6 +75,11 @@ describe("Dappazon", () => {
       expect(result).to.equal(COST);
     })
 
+    it('updates buyer"s order count', async () => {
+      const result = await dappazon.orderCount(buyer.address)
+      expect(result).to.equal(1);
+    })
+
   })
 
 
