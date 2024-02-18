@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+import React from 'react'
 
 // Components
 import Navigation from './components/Navigation'
