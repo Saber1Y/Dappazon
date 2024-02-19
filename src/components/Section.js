@@ -1,8 +1,8 @@
-import { ethers } from 'ethers'
+// import { ethers } from 'ethers'
 import React from 'react';
 
 // Components
-import Rating from './Rating'
+// import Rating from './Rating'
 
 const Section = ({ title, items, togglePop }) => {
     return (

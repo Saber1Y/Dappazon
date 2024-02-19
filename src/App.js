@@ -1,22 +1,23 @@
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
+// import { useEffect, useState } from 'react'
+// import { ethers } from 'ethers'
 import React from 'react'
-import { Navigation, Section, Product } from './components/index'
+// import { Navigation, Section, Product } from './components/index.js';
+
 
 
 
 // ABIs
-import Dappazon from './abis/Dappazon.json'
+// import Dappazon from './abis/Dappazon.json'
 
 // Config
-import config from './config.json'
+// import config from './config.json'
 
 function App() {
 
   return (
-    <div>
+    <div className='bg-black'>
 
-      <h2 className='text-red text-4xl'>Welcome to Dappazon</h2>
+      <h2 className='text-red'>Welcome to Dappazon</h2>
 
     </div>
   );

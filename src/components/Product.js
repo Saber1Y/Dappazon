@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
+// import { useEffect, useState } from 'react'
+// import { ethers } from 'ethers'
 import React from 'react'
 
 // Components
-import Rating from './Rating'
+// import Rating from './Rating'
 
-import close from '../assets/close.svg'
+// import close from '../assets/close.svg'
 
 const Product = ({ item, provider, account, dappazon, togglePop }) => {
 
