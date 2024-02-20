@@ -1,10 +1,14 @@
-// import { ethers } from 'ethers';
+import { ethers } from 'ethers';
 import React from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
 
-import { MdOutlineRestaurantMenu } from "react-icons/md";
-
 const Navigation = ({ account, setAccount }) => {
+
+    const connectAcc = async () => {
+        const accounts = await window.etherum.request({ method: 'eth_requestAccounts' });
+        const account = ethers.utils.getAddress(accounts[0]);
+        setAccount(account);
+    }
 
     return (
         <nav>
@@ -15,11 +19,20 @@ const Navigation = ({ account, setAccount }) => {
                 </div>
 
                 <div className='nav__search'>
-                    <input type="text" className='nav__search' />
+                    <input type="text" className='nav__search' placeholder='Search...'/>
                 </div>
 
                 <div className='nav__right'>
-                    <button type='button' className='nav__connect'></button>
+
+
+                    {account ? (
+                        <button  className='nav__connect' type='button'>
+                            {account.slice(0, 6) + "" + account.slice(32, 60)}
+                        </button>) : (
+                        <button 
+                            className='nav__connect' type='button' onClick={connectAcc}
+                        >Connect</button>
+                    )}
 
                     <p>Returns {""}&<span>Orders</span></p>
                     <p className='cart'>Cart</p>
@@ -27,8 +40,7 @@ const Navigation = ({ account, setAccount }) => {
                 </div>
             </div>
             <ul className='nav__links'>
-                <li>
-                </li>
+                <li className='nav__links-icon'><span><GiHamburgerMenu /></span>All</li>
                 <li><a href='#clothing' />Clothing</li>
                 <li><a href='Gaming' />Gaming</li>
                 <li><a href='Electronics' />Electronics</li>

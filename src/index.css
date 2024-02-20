@@ -57,6 +57,10 @@ nav {
   width: 100%;
 }
 
+/* .nav__brand:hover {
+  border: #ffffff;
+} */
+
 .div__left {
   display: flex;
   align-items: flex-start;
@@ -76,6 +80,18 @@ nav {
   padding: 1px 8px 0px 6px;
   position: static;
   float: none;
+  cursor: pointer;
+}
+
+.nav__brand h1:hover {
+  border: solid 1px #ffff;
+  transition: ease-in;
+  padding: 15px 10px;
+}
+.nav__brand p:hover {
+  border: solid 1px #ffff;
+  transition: ease-in;
+  padding: 15px 10px;
 }
 
 .nav__brand p {
@@ -94,6 +110,9 @@ nav {
   text-align: center;
 }
 
+.nav__right p {
+  cursor: pointer;
+}
 .nav__right p span {
   font-family: "Amazon Ember", Arial, sans-serif;
   font-weight: 600;
@@ -120,13 +139,21 @@ nav {
   font-family: "Amazon Ember", Arial, sans-serif;
   /* grid-column: 1 / span 3; */
   padding: 10px;
-
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-
   list-style: none;
+}
+
+.nav__links li span {
+  margin: 0 1px;
+}
+
+.nav__links-icon {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .nav__links li {
@@ -159,12 +186,10 @@ nav {
   margin: 0 auto;
 
   background-color: var(--clr-orange);
-  color: var(--clr-black);
-
   border: none;
   border-radius: 4px;
 
-  font-family: "Lalezar";
+  font-family: "Amazon Ember", Arial, sans-serif;
   font-size: 1.25em;
   font-weight: 600;
 

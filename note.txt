@@ -6,3 +6,8 @@ make listing ability for users,
 
 buy prod - Recieve cryp(checked), create an order -lisst order, subsrtact , emit 
 withdraw prod
+
+secure connetion to blockchain
+store on smart contract
+fetch from contract
+deploy on pages for UI
