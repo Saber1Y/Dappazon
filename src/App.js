@@ -1,9 +1,6 @@
-// import { useEffect, useState } from 'react'
-// import { ethers } from 'ethers'
-import React from 'react'
-// import { Navigation, Section, Product } from './components/index.js';
-
-
+import React, { useEffect, useState } from 'react'
+import { ethers } from 'ethers'
+import { Navigation, Section, Product } from './components/index.js';
 
 
 // ABIs
@@ -14,10 +11,23 @@ import React from 'react'
 
 function App() {
 
-  return (
-    <div className='bg-black'>
+  const [account, setAccount] = useState(null);
 
-      <h2 className='text-red'>Welcome to Dappazon</h2>
+
+  const loadBlockchainData = async () => {
+    const accounts = await window.etherum.request({ method: 'eth_requestAccounts' });
+    const account = ethers.utils.getAddress(accounts[0]);
+    setAccount(account);
+  }
+
+  useEffect(() => {
+    loadBlockchainData();
+  }, []);
+
+  return (
+    <div className=''>
+      <Navigation account={account} setAccount={account} />
+      <h2 className=''>Welcome to Dappazon</h2>
 
     </div>
   );
