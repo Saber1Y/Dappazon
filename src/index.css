@@ -116,13 +116,15 @@ nav {
 
 .nav__links {
   background-color: var(--clr-ebony-clay);
-  grid-column: 1 / span 3;
-
+  color: var(--clr-white);
+  font-family: "Amazon Ember", Arial, sans-serif;
+  /* grid-column: 1 / span 3; */
   padding: 10px;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 100%;
 
   list-style: none;
 }

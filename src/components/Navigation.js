@@ -1,5 +1,8 @@
 // import { ethers } from 'ethers';
 import React from 'react';
+import { GiHamburgerMenu } from "react-icons/gi";
+
+import { MdOutlineRestaurantMenu } from "react-icons/md";
 
 const Navigation = ({ account, setAccount }) => {
 
@@ -8,7 +11,7 @@ const Navigation = ({ account, setAccount }) => {
             <div className='nav__brand'>
                 <div className='div__left'>
                     <h1>Dappazon</h1>
-                    <p>Deliver to </p>
+                    <p>Deliver to  </p>
                 </div>
 
                 <div className='nav__search'>
@@ -20,9 +23,12 @@ const Navigation = ({ account, setAccount }) => {
 
                     <p>Returns {""}&<span>Orders</span></p>
                     <p className='cart'>Cart</p>
+
                 </div>
             </div>
             <ul className='nav__links'>
+                <li>
+                </li>
                 <li><a href='#clothing' />Clothing</li>
                 <li><a href='Gaming' />Gaming</li>
                 <li><a href='Electronics' />Electronics</li>
