@@ -17,14 +17,10 @@ const Navigation = ({ account, setAccount }) => {
                     <h1>Dappazon</h1>
                     <p>Deliver to  </p>
                 </div>
-
                 <div className='nav__search'>
                     <input type="text" className='nav__search' placeholder='Search...'/>
                 </div>
-
                 <div className='nav__right'>
-
-
                     {account ? (
                         <button  className='nav__connect' type='button'>
                             {account.slice(0, 6) + "" + account.slice(32, 60)}
