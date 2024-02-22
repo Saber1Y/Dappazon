@@ -177,6 +177,76 @@ nav {
   min-width: 50%;
 }
 
+.custom-form {
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.custom-label {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  display: none;
+}
+
+.custom-relative {
+  position: relative;
+}
+
+.custom-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 0.75rem;
+  pointer-events: none;
+}
+
+.custom-svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: #666;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 0.75rem;
+  padding-left: 2.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background-color: #f3f3f3;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.custom-input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(52, 152, 219, 0.25);
+}
+
+.custom-button {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: #2980b9;
+}
+
 .nav__connect {
   width: 150px;
   height: 40px;

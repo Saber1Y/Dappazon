@@ -15,23 +15,23 @@ function App() {
   const [provider, setProvider] = useState(null);
 
 
-  // const loadBlockchainData = async () => {
-  //   //creats connection to the chain
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum)
-  //   setProvider(provider);
+  const loadBlockchainData = async () => {
+    //creats connection to the chain
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    setProvider(provider);
 
-  //   //Network on chain
+    //Network on chain
 
-  //   const network = await provider.getNetwork();
-  //   console.log(network);
+    const network = await provider.getNetwork();
+    console.log(network);
 
-  //   const dappazon = new ethers.Contract(("0x5FbDB2315678afecb367f032d93F642f64180aa3"), provider, Dappazon
-  //   )
-  // }
+    const dappazon = new ethers.Contract(("0x5FbDB2315678afecb367f032d93F642f64180aa3"), provider, Dappazon
+    )
+  }
 
-  // useEffect(() => {
-  //   loadBlockchainData();
-  // }, []);
+  useEffect(() => {
+    loadBlockchainData();
+  }, []);
 
   return (
     <div className=''>

@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const Navigation = ({ account, setAccount }) => {
 
     const connectAcc = async () => {
-        const accounts = await window.etherum.request({ method: 'eth_requestAccounts' });
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = ethers.utils.getAddress(accounts[0]);
         setAccount(account);
     }
@@ -18,14 +18,26 @@ const Navigation = ({ account, setAccount }) => {
                     <p>Deliver to  </p>
                 </div>
                 <div className='nav__search'>
-                    <input type="text" className='nav__search' placeholder='Search...'/>
+                    <form class="custom-form">
+                        <label for="default-search" class="custom-label">Search</label>
+                        <div class="custom-relative">
+                            <div class="custom-absolute">
+                                <svg class="custom-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path class="custom-path" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="search" id="default-search" class="custom-input" placeholder="Search Mockups, Logos..." required />
+                            <button type="submit" class="custom-button">Search</button>
+                        </div>
+                    </form>
+
                 </div>
                 <div className='nav__right'>
                     {account ? (
-                        <button  className='nav__connect' type='button'>
+                        <button className='nav__connect' type='button'>
                             {account.slice(0, 6) + "" + account.slice(32, 60)}
                         </button>) : (
-                        <button 
+                        <button
                             className='nav__connect' type='button' onClick={connectAcc}
                         >Connect</button>
                     )}
