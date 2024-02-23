@@ -9,5 +9,5 @@ withdraw prod
 
 secure connetion to blockchain
 store on smart contract
-fetch from contract
+fetch from contract (filter catrgories)
 deploy on pages for UI

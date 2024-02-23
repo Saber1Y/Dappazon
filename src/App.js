@@ -13,6 +13,7 @@ function App() {
 
   const [account, setAccount] = useState(null);
   const [provider, setProvider] = useState(null);
+  const [dappazon, setDappazon] = useState(null);
 
 
   const loadBlockchainData = async () => {
@@ -25,19 +26,36 @@ function App() {
     const network = await provider.getNetwork();
     console.log(network);
 
-    const dappazon = new ethers.Contract(("0x5FbDB2315678afecb367f032d93F642f64180aa3"), provider, Dappazon
+    const dappazon = new ethers.Contract(
+      config[network.chainId].dappazon.address,
+      provider,
+      Dappazon
     )
+    setDappazon(dappazon)
+
+    const items = []
+
+    for (let i = 0; i < 9; i++) {
+      const item = await dappazon.items(i + 1)
+      items.psuh(item)
+    }
+
+    console.log(items);
+
+    const electronics = items.filter((item) => item.category === 'electronics')
+    console.log(electronics)
+
   }
 
-  useEffect(() => {
-    loadBlockchainData();
-  }, []);
+
+  // useEffect(() => {
+  //   loadBlockchainData();
+  // }, []);
 
   return (
     <div className=''>
       <Navigation account={account} setAccount={account} />
-      <h2 className=''>Welcome to Dappazon</h2>
-
+      <h2 className=''>Dappazon's Best Picks</h2>
     </div>
   );
 }
