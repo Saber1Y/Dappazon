@@ -11,6 +11,10 @@ import config from './config.json'
 
 function App() {
 
+  const toggle = () => {
+    console.log('toggle');
+  }
+
   const [account, setAccount] = useState(null);
 
   const [provider, setProvider] = useState(null);
@@ -18,6 +22,10 @@ function App() {
   const [dappazon, setDappazon] = useState(null);
 
   const [electronics, setElectronics] = useState(null);
+
+  const [clothing, setClothing] = useState(null);
+
+  const [toys, setToys] = useState(null);
 
 
 
@@ -34,15 +42,17 @@ function App() {
 
     for (let i = 0; i < 9; i++) {
       const item = await dappazon.items(i + 1)
-      console.log(item);
+
       items.push(item)
     }
 
-    console.log(items);
+    const electronics = items.filter((item) => item.category === 'electronics');
+    const clothing = items.filter((item) => item.category === "clothing");
+    const toys = items.filter((item) => item.category === "toys");
 
-    const electronics = items.filter((item) => item.category === 'electronics')
-    console.log(electronics);
     setElectronics(electronics);
+    setClothing(clothing);
+    setToys(toys);
   }
 
   useEffect(() => {
@@ -54,8 +64,12 @@ function App() {
       <Navigation account={account} setAccount={account} />
       <h2 className=''>Dappazon's Best Picks</h2>
 
-      {electronics && (
-        <p>Products</p>
+      {electronics && toys && clothing && (
+        <>
+          <Section title="Gaming" items={toys} toggle={toggle} />
+          <Section title="Clothing" items={clothing} toggle={toggle} />
+          <Section title="Electronics" items={electronics} toggle={toggle} />
+        </>
       )}
 
     </div>
