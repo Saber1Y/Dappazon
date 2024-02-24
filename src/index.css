@@ -289,9 +289,6 @@ nav {
   background-color: var(--clr-orange-dark);
 }
 
-/* ------------------------------------------------------ */
-/* -- CARDS -- */
-
 .cards__section {
   max-width: 1200px;
   margin: 0 auto 50px;
@@ -334,6 +331,23 @@ nav {
 
 .card__image img {
   max-width: 100%;
+}
+
+.card__btn {
+  background-color: var(--clr-orange);
+  color: var(--clr-white);
+  border: none;
+  padding: 3px 5px;
+  font-size: 16px;
+  margin: 4px 0;
+  font-weight: 600;
+  font-family: "Amazon Ember", Arial, sans-serif;
+  border-radius: 5px;
+}
+
+.card__btn:hover {
+  background-color: var(--clr-orange-dark);
+ 
 }
 
 .card__info {
