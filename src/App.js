@@ -10,10 +10,15 @@ import Dappazon from './abis/Dappazon.json'
 import config from './config.json'
 
 function App() {
+  const [toggleComp, setToggleComp] = useState(false);
+  
+  const [item, setItem] = useState({});
 
-  const toggle = () => {
-    console.log('toggle');
+  const toggle = (item) => {
+    setItem(item);
+    toggleComp ? setToggleComp(false) : setToggleComp(true);
   }
+
 
   const [account, setAccount] = useState(null);
 
@@ -70,6 +75,11 @@ function App() {
           <Section title="Clothing" items={clothing} toggle={toggle} />
           <Section title="Electronics" items={electronics} toggle={toggle} />
         </>
+      )}
+
+      {/* once toggle btn is click */}
+      {toggleComp && (
+        <Product item={item} provider={provider} account={account} dappazon={dappazon} toggle={toggle} />
       )}
 
     </div>
