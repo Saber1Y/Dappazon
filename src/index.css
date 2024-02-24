@@ -197,8 +197,8 @@ nav {
 
 .custom-button {
   margin-left: 0.5rem;
-  padding: 0.625rem 1rem;
-  font-size: 0.875rem;
+  /* padding: 0.625rem 1rem; */
+  /* font-size: 0.875rem; */
   font-weight: 500;
   color: #333;
   background-color: #f3f3f3;
