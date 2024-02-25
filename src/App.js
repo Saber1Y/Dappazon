@@ -11,7 +11,7 @@ import config from './config.json'
 
 function App() {
   const [toggleComp, setToggleComp] = useState(false);
-  
+
   const [item, setItem] = useState({});
 
   const toggle = (item) => {
@@ -47,7 +47,6 @@ function App() {
 
     for (let i = 0; i < 9; i++) {
       const item = await dappazon.items(i + 1)
-
       items.push(item)
     }
 
@@ -66,7 +65,7 @@ function App() {
 
   return (
     <div className=''>
-      <Navigation account={account} setAccount={account} />
+      <Navigation account={account} setAccount={setAccount} />
       <h2 className=''>Dappazon's Best Picks</h2>
 
       {electronics && toys && clothing && (

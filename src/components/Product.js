@@ -9,8 +9,11 @@ const Product = ({ item, provider, account, dappazon, toggle }) => {
 
   const [order, setOrder] = useState(null)
 
-  const handlebuy = () => {
-    console.log('buying...')
+  const handlebuy = async () => {
+    const signer = await provider.getSigner();
+
+    let transaction = await dappazon.connect(signer).buyProduct(item.id, { value: item.cost })
+    await transaction.wait()
   }
 
   return (

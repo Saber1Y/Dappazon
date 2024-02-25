@@ -6,7 +6,7 @@ const Navigation = ({ account, setAccount }) => {
 
     const connectAcc = async () => {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const account = ethers.utils.getAddress(accounts[0]);
+        const account = ethers.utils.getAddress(accounts[0])
         setAccount(account);
     }
 
@@ -47,7 +47,8 @@ const Navigation = ({ account, setAccount }) => {
                 <div className='nav__right'>
                     {account ? (
                         <button className='nav__connect' type='button'>
-                            {account.slice(0, 6) + "" + account.slice(32, 60)}
+                            {account}
+                            {/* {account.slice(0, 6) + "" + account.slice(32, 60)} */}
                         </button>) : (
                         <button
                             className='nav__connect' type='button' onClick={connectAcc}
