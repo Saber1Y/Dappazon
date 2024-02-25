@@ -1,4 +1,4 @@
-// import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import React from 'react'
 import Rating from './Rating'
@@ -6,6 +6,8 @@ import Rating from './Rating'
 import close from '../assets/close.svg'
 
 const Product = ({ item, provider, account, dappazon, toggle }) => {
+
+  const [order, setOrder] = useState(null)
 
   const handlebuy = () => {
     console.log('buying...')
@@ -59,6 +61,16 @@ const Product = ({ item, provider, account, dappazon, toggle }) => {
           </button>
           <p><small>sold from</small>DAPPAZON</p>
           {/* <p><small>Bfrom</small>DAPPAZON</p> */}
+
+          {order && (
+            <div className='product__bought'>
+              Item bought on <br />
+              <strong>
+                {new Date(Number(order.time.toString() + '000')).toLocaleString(undefined, { weekday: "long", hour: 'numeric', minute: 'numeric', second: 'numeric' })}
+              </strong>
+            </div>
+          )}
+
         </div>
         <button className='product__close' onClick={() => toggle(item)}>
           <img src={close} alt='close' />
