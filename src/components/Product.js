@@ -10,8 +10,8 @@ const Product = ({ item, provider, account, dappazon, toggle }) => {
   const [order, setOrder] = useState(null);
   const [hasBought, setHasbought] = useState(false);
 
-  const buydetails = async () => {
-    const events = await dappazon.queryFilter('buy');
+  const fetchDetails = async () => {
+    const events = await dappazon.queryFilter("Buy")
     const orders = events.filter(
       (event) => event.args.buyer === account && event.args.itemId.toString() === item.id.toString()
     )
@@ -31,8 +31,9 @@ const Product = ({ item, provider, account, dappazon, toggle }) => {
   }
 
   useEffect(() => {
-    buydetails();
+    fetchDetails()
   }, [hasBought])
+
 
   return (
     <div className="product">

@@ -76,7 +76,7 @@ const Navigation = ({ account, setAccount }) => {
                     {account ? (
                         <button className='nav__connect' type='button'>
 
-                            {account.slice(0, 6) + "" + account.slice(32, 60)}
+                            {account.slice(0, 6) + "" + account.slice(32, 50)}
                         </button>) : (
                         <button
                             className='nav__connect' type='button' onClick={connectAcc}
