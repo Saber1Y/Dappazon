@@ -15,7 +15,7 @@ const Section = ({ title, items, toggle }) => {
                 {items.map((item, index) => (
                     <div className='card' key={index}>
                         <div className='card__image'>
-                            <img src={item.image} alt='image' />
+                            <img src={item.image} alt='' />
                         </div>
                         <div className='card__info'>
                             <h3>{item.name}</h3>

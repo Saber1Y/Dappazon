@@ -1,8 +1,36 @@
 import { ethers } from 'ethers';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navigation = ({ account, setAccount }) => {
+    const [userLocation, setUserLocation] = useState(null);
+
+    useEffect(() => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const { latitude, longitude } = position.coords;
+                    try {
+                        // Fetch country based on latitude and longitude
+                        const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
+                        const data = await response.json();
+                        const country = data.countryName;
+                        setUserLocation(country);
+                    } catch (error) {
+                        console.error("Error fetching user country:", error);
+                        setUserLocation("Default Location");
+                    }
+                },
+                (error) => {
+                    console.error("Error getting user location:", error);
+                    setUserLocation("Default Location");
+                }
+            );
+        } else {
+            console.error("Geolocation is not supported by your browser");
+            setUserLocation("Default Location");
+        }
+    }, []);
 
     const connectAcc = async () => {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -15,7 +43,7 @@ const Navigation = ({ account, setAccount }) => {
             <div className='nav__brand'>
                 <div className='div__left'>
                     <h1>Dappazon</h1>
-                    <p>Deliver to  </p>
+                    <p>Deliver to {userLocation}</p>
                 </div>
                 <div className='nav__search'>
                     <form className="custom-form">
@@ -47,8 +75,8 @@ const Navigation = ({ account, setAccount }) => {
                 <div className='nav__right'>
                     {account ? (
                         <button className='nav__connect' type='button'>
-                            {account}
-                            {/* {account.slice(0, 6) + "" + account.slice(32, 60)} */}
+
+                            {account.slice(0, 6) + "" + account.slice(32, 60)}
                         </button>) : (
                         <button
                             className='nav__connect' type='button' onClick={connectAcc}
@@ -62,10 +90,11 @@ const Navigation = ({ account, setAccount }) => {
             </div>
             <ul className='nav__links'>
                 <li className='nav__links-icon'><span><GiHamburgerMenu /></span>All</li>
-                <li><a href='#clothing' />Clothing</li>
-                <li><a href='Gaming' />Gaming</li>
-                <li><a href='Electronics' />Electronics</li>
+                <li><a href='#clothing'>Clothing</a></li>
+                <li><a href='#gaming'>Gaming</a></li>
+                <li><a href='#electronics'>Electronics</a></li>
             </ul>
+
         </nav>
     );
 }
