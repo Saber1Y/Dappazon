@@ -67,7 +67,7 @@ describe("Dappazon", () => {
       transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, IMAGE, CATEGORY, COST, RATING, STOCK)
       await transaction.wait();
 
-      transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST })
+      transaction = await dappazon.connect(buyer).buy(ID, { value: COST })
     });
 
 
@@ -102,17 +102,17 @@ describe("Dappazon", () => {
     let balanceBefore;
 
     beforeEach(async () => {
-      
+
       let transaction = await dappazon.connect(deployer).ListProduct(ID, NAME, CATEGORY, IMAGE, COST, RATING, STOCK)
       await transaction.wait()
 
-            transaction = await dappazon.connect(buyer).BuyProduct(ID, { value: COST })
+      transaction = await dappazon.connect(buyer).buy(ID, { value: COST })
       await transaction.wait()
 
-     
+
       balanceBefore = await ethers.provider.getBalance(deployer.address)
 
-          transaction = await dappazon.connect(deployer).withdraw()
+      transaction = await dappazon.connect(deployer).withdraw()
       await transaction.wait()
     })
 

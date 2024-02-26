@@ -12,7 +12,9 @@ const Product = ({ item, provider, account, dappazon, toggle }) => {
   const handlebuy = async () => {
     const signer = await provider.getSigner();
 
-    let transaction = await dappazon.connect(signer).buyProduct(item.id, { value: item.cost })
+    let transaction = await dappazon.connect(signer).buy(item.id, { value: item.cost })
+    console.log(dappazon)
+    console.log(transaction);
     await transaction.wait()
   }
 
@@ -53,7 +55,7 @@ const Product = ({ item, provider, account, dappazon, toggle }) => {
 
           <div>
             {item.stock >= 0 ? (
-              <p>{item.name} in Stock</p>
+              <p>{item.name} is in Stock</p>
             ) :
               <p>{item.name} is not in stock</p>
             }
