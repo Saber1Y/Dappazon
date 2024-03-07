@@ -1,9 +1,15 @@
 import { ethers } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaMapMarkerAlt } from 'react-icons/fa';
+
 
 const Navigation = ({ account, setAccount }) => {
     const [userLocation, setUserLocation] = useState(null);
+
+    const [toggleMenu, setToggleMenu] = useState(false);
+
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         if ("geolocation" in navigator) {
@@ -11,7 +17,6 @@ const Navigation = ({ account, setAccount }) => {
                 async (position) => {
                     const { latitude, longitude } = position.coords;
                     try {
-                        // Fetch country based on latitude and longitude
                         const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
                         const data = await response.json();
                         const country = data.countryName;
@@ -38,19 +43,28 @@ const Navigation = ({ account, setAccount }) => {
         setAccount(account);
     }
 
+    const handleSearch = () => {
+        console.log('searchQuery:', searchQuery);
+    }
+
     return (
         <nav>
             <div className='nav__brand'>
                 <div className='div__left'>
                     <h1>Dappazon</h1>
-                    <p>Deliver to {userLocation}</p>
+                    <p>
+                        Deliver to {" "} <FaMapMarkerAlt /> {""}
+                        {userLocation}
+                    </p>
+
                 </div>
                 <div className='nav__search'>
                     <form className="custom-form">
                         <div className="custom-flex">
-                            {/* <button id="dropdown-button" data-dropdown-toggle="dropdown" className="custom-button" type="button">All categories <svg className="custom-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
-                                <path className="custom-path" d="m1 1 4 4 4-4" />
-                            </svg></button> */}
+                            {/* <button id="dropdown-button" data-dropdown-toggle="dropdown" className="custom-button" type="button">All
+                                <svg className="custom-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6">
+                                    <path className="custom-path" d="m1 1 4 4 4-4" />
+                                </svg></button> */}
                             {/* <div id="dropdown" className="custom-dropdown">
                                 <ul className="custom-ul" aria-labelledby="dropdown-button">
                                     <li><button type="button" className="custom-dropdown-button">Mockups</button></li>
@@ -60,8 +74,8 @@ const Navigation = ({ account, setAccount }) => {
                                 </ul>
                             </div> */}
                             <div className="custom-relative">
-                                <input type="search" id="search-dropdown" className="custom-input" placeholder="Search..." required />
-                                <button type="submit" className="custom-submit">
+                                <input type="search" id="search-dropdown" className="custom-input" placeholder="Search..." required value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                                <button type="submit" className="custom-submit" onClick={handleSearch}>
                                     <svg className="custom-submit-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path className="custom-path" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
@@ -76,7 +90,7 @@ const Navigation = ({ account, setAccount }) => {
                     {account ? (
                         <button className='nav__connect' type='button'>
 
-                            {account.slice(0, 6) + "" + account.slice(32, 50)}
+                            {account.slice(0, 3) + "" + account.slice(32, 42)}
                         </button>) : (
                         <button
                             className='nav__connect' type='button' onClick={connectAcc}
@@ -89,11 +103,22 @@ const Navigation = ({ account, setAccount }) => {
                 </div>
             </div>
             <ul className='nav__links'>
-                <li className='nav__links-icon'><span><GiHamburgerMenu /></span>All</li>
+                <li className='nav__links-icon' onClick={() => setToggleMenu(toggleMenu)}><span><GiHamburgerMenu /></span>All</li>
                 <li><a href='#clothing'>Clothing</a></li>
                 <li><a href='#gaming'>Gaming</a></li>
                 <li><a href='#electronics'>Electronics</a></li>
             </ul>
+
+            {toggleMenu === true && (
+                <div>
+                    <ul className='nav__links'>
+                        <li className='nav__links-icon'><span><GiHamburgerMenu /></span>All</li>
+                        <li><a href='#clothing'>Clothing</a></li>
+                        <li><a href='#gaming'>Gaming</a></li>
+                        <li><a href='#electronics'>Electronics</a></li>
+                    </ul>
+                </div>
+            )}
 
         </nav>
     );

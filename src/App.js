@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { Navigation, Section, Product } from './components/index.js';
+import { Navigation, Section, Product, Footer } from './components/index.js';
 
 
 // ABIs
@@ -80,7 +80,7 @@ function App() {
       {toggleComp && (
         <Product item={item} provider={provider} account={account} dappazon={dappazon} toggle={toggle} />
       )}
-
+      <Footer />
     </div>
   );
 }
