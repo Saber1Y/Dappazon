@@ -36,10 +36,9 @@ h2:not(.product__overview h2) {
 }
 
 nav {
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center; */
   align-items: center;
+  margin: 0 0;
+  padding: 0 0;
   width: 100%;
   background-color: var(--clr-bunker);
   align-items: center;
@@ -58,11 +57,6 @@ nav {
   margin-left: 15px;
   float: none;
 }
-
-/* 
-p span:first-child {
-  margin-bottom: 5px; 
-} */
 
 .nav__brand h1 {
   display: flex;
@@ -135,7 +129,6 @@ p span:first-child {
   background-color: var(--clr-ebony-clay);
   color: var(--clr-white);
   font-family: "Amazon Ember", Arial, sans-serif;
-  /* grid-column: 1 / span 3; */
   padding: 10px;
   display: flex;
   justify-content: flex-start;
@@ -156,7 +149,6 @@ p span:first-child {
   border: solid 1px #ffff;
   transition: ease-in;
   padding: 5px 5px;
-  /* padding: 15px 10px; */
 }
 
 .nav__links li a {
@@ -506,7 +498,10 @@ p span:first-child {
   justify-content: space-evenly;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: ) {
+}
+
+/* @media screen and (max-width: 992px) {
   .product__details {
     height: 95%;
     width: 90%;
@@ -518,19 +513,19 @@ p span:first-child {
     margin-top: 20px;
     grid-column: span 2;
   }
-}
+} */
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .nav__links {
     display: none;
   }
 
-  /* .nav__search {
+  .nav__search {
     display: none;
-  } */
-}
+  }
+} */
 
-@media screen and (max-width: 576px) {
+/* @media screen and (max-width: 576px) {
   .product__details {
     height: 95%;
     overflow-y: scroll;
@@ -539,4 +534,4 @@ p span:first-child {
   .product__image {
     grid-column: span 2;
   }
-}
+} */
